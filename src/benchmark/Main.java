@@ -10,6 +10,8 @@ import algorithms.Burbuja;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+
 
 /**
  * ============================================================
@@ -39,6 +41,8 @@ public class Main {
      *   fib(40) → ~2.7 mil millones de llamadas (tarda minutos)
      */
     private static final int[] TAMANOS = {24, 14, 9, 20, 5, 30};
+    
+
 
     /** Ruta del archivo de resultados */
     private static final String CSV_PATH = "resultados/tiempos.csv";
@@ -114,6 +118,7 @@ public class Main {
         }
 
         // ---- BÚSQUEDA LINEAL RECURSIVA ----
+        
         System.out.println("\n  BÚSQUEDA LINEAL RECURSIVA");
         Medidor.imprimirEncabezado();
         for (int objetivo : TAMANOS) {
@@ -124,25 +129,31 @@ public class Main {
         }
 
         // ---- BURBUJA ITERATIVO ----
+
+        int[] arregloDesordenado = {10000, 100, 500, 5, 1000, 5000};
+
+        // ---- BURBUJA ITERATIVO ----
         System.out.println("\n  BURBUJA ITERATIVO  [O(n^2)]");
         Medidor.imprimirEncabezado();
-        int[] ordenadoIter = Burbuja.iterativo(TAMANOS);
-        double tiempoIter = Medidor.medir(() -> Burbuja.iterativo(TAMANOS));
-        Medidor.imprimirFila("Burbuja", "Iterativo", TAMANOS.length, tiempoIter);
+        int[] ordenadoIter = Burbuja.iterativo(arregloDesordenado);
+        double tiempoIter = Medidor.medir(() -> Burbuja.iterativo(arregloDesordenado));
+        Medidor.imprimirFila("Burbuja", "Iterativo", arregloDesordenado.length, tiempoIter);
+        System.out.println("Arreglo ordenado (Iterativo): " + Arrays.toString(ordenadoIter));
         csv.append(String.format("Burbuja,Iterativo,%d,%s,%.6f%n",
-                TAMANOS.length,
-                java.util.Arrays.toString(ordenadoIter),
+                arregloDesordenado.length,
+                Arrays.toString(ordenadoIter),
                 tiempoIter));
 
         // ---- BURBUJA RECURSIVO ----
         System.out.println("\n  BURBUJA RECURSIVO  [O(n^2)]");
         Medidor.imprimirEncabezado();
-        int[] ordenadoRec = Burbuja.recursivo(TAMANOS, TAMANOS.length);
-        double tiempoRec = Medidor.medir(() -> Burbuja.recursivo(TAMANOS, TAMANOS.length));
-        Medidor.imprimirFila("Burbuja", "Recursivo", TAMANOS.length, tiempoRec);
+        int[] ordenadoRec = Burbuja.recursivo(arregloDesordenado, arregloDesordenado.length);
+        double tiempoRec = Medidor.medir(() -> Burbuja.recursivo(arregloDesordenado, arregloDesordenado.length));
+        Medidor.imprimirFila("Burbuja", "Recursivo", arregloDesordenado.length, tiempoRec);
+        System.out.println("Arreglo ordenado (Recursivo): " + Arrays.toString(ordenadoRec));
         csv.append(String.format("Burbuja,Recursivo,%d,%s,%.6f%n",
-                TAMANOS.length,
-                java.util.Arrays.toString(ordenadoRec),
+                arregloDesordenado.length,
+                Arrays.toString(ordenadoRec),
                 tiempoRec));
 
 

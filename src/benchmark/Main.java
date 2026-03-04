@@ -98,6 +98,9 @@ public class Main {
         }
 
         // ---- FACTORIAL RECURSIVO ----
+
+        int[] arregloDesordenado = {10000, 100, 500, 5, 1000, 5000};
+
         System.out.println("\n  FACTORIAL RECURSIVO  [O(n)]");
         Medidor.imprimirEncabezado();
         for (int n : TAMANOS) {
@@ -107,30 +110,30 @@ public class Main {
             csv.append(String.format("Factorial,Recursivo,%d,%d,%.6f%n", n, resultado, tiempoMs));
         }
 
-        // ---- BUSQUEDA LINEAL ITERATIVO
-        System.out.println("\n  BUSQUEDA LINEAL ITERATIVO");
+        // ---- BÚSQUEDA LINEAL ITERATIVO ----
+        System.out.println("\n  BÚSQUEDA LINEAL ITERATIVO");
         Medidor.imprimirEncabezado();
-        for (int objetivo : TAMANOS) {
-            int resultado = BusquedaLineal.iterativo(TAMANOS, objetivo);
-            double tiempoMs = Medidor.medir(() -> BusquedaLineal.iterativo(TAMANOS, objetivo));
+        for (int objetivo : arregloDesordenado) {
+            int resultado = BusquedaLineal.iterativo(arregloDesordenado, objetivo);
+            double tiempoMs = Medidor.medir(() -> BusquedaLineal.iterativo(arregloDesordenado, objetivo));
             Medidor.imprimirFila("BusquedaLineal", "Iterativo", objetivo, tiempoMs);
             csv.append(String.format("BusquedaLineal,Iterativo,%d,%d,%.6f%n", objetivo, resultado, tiempoMs));
         }
 
         // ---- BÚSQUEDA LINEAL RECURSIVA ----
-        
         System.out.println("\n  BÚSQUEDA LINEAL RECURSIVA");
         Medidor.imprimirEncabezado();
-        for (int objetivo : TAMANOS) {
-            int resultado = BusquedaLineal.recursivo(TAMANOS, objetivo,0);
-            double tiempoMs = Medidor.medir(() -> BusquedaLineal.recursivo(TAMANOS, objetivo,0));
+        for (int objetivo : arregloDesordenado) {
+            int resultado = BusquedaLineal.recursivo(arregloDesordenado, objetivo, 0);
+            double tiempoMs = Medidor.medir(() -> BusquedaLineal.recursivo(arregloDesordenado, objetivo, 0));
             Medidor.imprimirFila("BusquedaLineal", "Recursivo", objetivo, tiempoMs);
             csv.append(String.format("BusquedaLineal,Recursivo,%d,%d,%.6f%n", objetivo, resultado, tiempoMs));
         }
 
+
         // ---- BURBUJA ITERATIVO ----
 
-        int[] arregloDesordenado = {10000, 100, 500, 5, 1000, 5000};
+        //int[] arregloDesordenado = {10000, 100, 500, 5, 1000, 5000};
 
         // ---- BURBUJA ITERATIVO ----
         System.out.println("\n  BURBUJA ITERATIVO  [O(n^2)]");
@@ -156,9 +159,89 @@ public class Main {
                 Arrays.toString(ordenadoRec),
                 tiempoRec));
 
+        //PROMEDIO 
+        System.out.println("\n  PROMEDIO DE TIEMPOS (5 intentos)");
+        Medidor.imprimirEncabezado2();
+                // Número de intentos completos
+        final int INTENTOS = 5;
+
+        // ===============================
+        // BURBUJA ITERATIVO
+        // ===============================
+        double sumaBurbujaIter = 0;
+        for (int i = 0; i < INTENTOS; i++) {
+            sumaBurbujaIter += Medidor.medir(() -> Burbuja.iterativo(arregloDesordenado));
+        }
+        double promedioBurbujaIter = sumaBurbujaIter / INTENTOS;
+        System.out.printf("Burbuja Iterativo (promedio %d intentos): %.6f ms%n", INTENTOS, promedioBurbujaIter);
+
+        // BURBUJA RECURSIVO
+        double sumaBurbujaRec = 0;
+        for (int i = 0; i < INTENTOS; i++) {
+            sumaBurbujaRec += Medidor.medir(() -> Burbuja.recursivo(arregloDesordenado, arregloDesordenado.length));
+        }
+        double promedioBurbujaRec = sumaBurbujaRec / INTENTOS;
+        System.out.printf("Burbuja Recursivo (promedio %d intentos): %.6f ms%n", INTENTOS, promedioBurbujaRec);
+
+        // ===============================
+        // FACTORIAL ITERATIVO
+        // ===============================
+        double sumaFactIter = 0;
+        for (int i = 0; i < INTENTOS; i++) {
+            sumaFactIter += Medidor.medir(() -> Factorial.iterativo(20)); // ejemplo con n=20
+        }
+        double promedioFactIter = sumaFactIter / INTENTOS;
+        System.out.printf("Factorial Iterativo (promedio %d intentos): %.6f ms%n", INTENTOS, promedioFactIter);
+
+        // FACTORIAL RECURSIVO
+        double sumaFactRec = 0;
+        for (int i = 0; i < INTENTOS; i++) {
+            sumaFactRec += Medidor.medir(() -> Factorial.recursivo(20));
+        }
+        double promedioFactRec = sumaFactRec / INTENTOS;
+        System.out.printf("Factorial Recursivo (promedio %d intentos): %.6f ms%n", INTENTOS, promedioFactRec);
+
+        // ===============================
+        // FIBONACCI ITERATIVO
+        // ===============================
+        double sumaFibIter = 0;
+        for (int i = 0; i < INTENTOS; i++) {
+            sumaFibIter += Medidor.medir(() -> Fibonacci.iterativo(30)); // ejemplo con n=30
+        }
+        double promedioFibIter = sumaFibIter / INTENTOS;
+        System.out.printf("Fibonacci Iterativo (promedio %d intentos): %.6f ms%n", INTENTOS, promedioFibIter);
+
+        // FIBONACCI RECURSIVO
+        double sumaFibRec = 0;
+        for (int i = 0; i < INTENTOS; i++) {
+            sumaFibRec += Medidor.medir(() -> Fibonacci.recursivo(20)); // n más pequeño por O(2^n)
+        }
+        double promedioFibRec = sumaFibRec / INTENTOS;
+        System.out.printf("Fibonacci Recursivo (promedio %d intentos): %.6f ms%n", INTENTOS, promedioFibRec);
+
+        // ===============================
+        // BÚSQUEDA LINEAL ITERATIVO
+        // ===============================
+        double sumaBusqIter = 0;
+        for (int i = 0; i < INTENTOS; i++) {
+            sumaBusqIter += Medidor.medir(() -> BusquedaLineal.iterativo(arregloDesordenado, 1000)); // buscar 1000
+        }
+        double promedioBusqIter = sumaBusqIter / INTENTOS;
+        System.out.printf("Busqueda Lineal Iterativo (promedio %d intentos): %.6f ms%n", INTENTOS, promedioBusqIter);
+
+        // BÚSQUEDA LINEAL RECURSIVO
+        double sumaBusqRec = 0;
+        for (int i = 0; i < INTENTOS; i++) {
+            sumaBusqRec += Medidor.medir(() -> BusquedaLineal.recursivo(arregloDesordenado, 1000, 0));
+        }
+        double promedioBusqRec = sumaBusqRec / INTENTOS;
+        System.out.printf("Busqueda Lineal Recursivo (promedio %d intentos): %.6f ms%n", INTENTOS, promedioBusqRec);
+
+        
+
 
         // ---- ANÁLISIS DE DIFERENCIA ----
-        System.out.println("\n  COMPARACIÓN ITERATIVO vs RECURSIVO");
+        System.out.println("\n  COMPARACIÓN ITERATIVO vs RECURSIVO (FIBONACCI)");
         System.out.println("-".repeat(60));
         System.out.printf("%-8s | %-14s | %-14s | %s%n",
                 "n", "Iterativo (ms)", "Recursivo (ms)", "Recursivo / Iterativo");

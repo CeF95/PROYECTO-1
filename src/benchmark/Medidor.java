@@ -65,6 +65,10 @@ public class Medidor {
         System.out.println("-".repeat(60));
     }
 
+    public static void imprimirEncabezado2() {
+        System.out.println("-".repeat(60));
+    }
+
     /**
      * Imprime una fila de resultado con formato alineado.
      *

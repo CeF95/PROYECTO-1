@@ -5,6 +5,44 @@ Celeste Fuentes Sepet
 Carné: 202500185
 
 ---
+## Rubrica del proyecto
+1. Implementación de algoritmos  
+Se deben implementar 8 algoritmos, cada uno correctamente, compilando y produciendo resultados válidos.
+
+Factorial iterativo: implementación correcta usando ciclo.
+
+Factorial recursivo: caso base correcto y llamada recursiva bien definida.
+
+Fibonacci iterativo: calcula el n-ésimo término con ciclo, sin repetir cálculos.
+
+Fibonacci recursivo: calcula el n-ésimo término recursivamente (sin memoización).
+
+Búsqueda Lineal iterativa: recorre el arreglo secuencialmente y retorna el índice correcto.
+
+Búsqueda Lineal recursiva: busca recursivamente reduciendo el subproblema en cada llamada.
+
+Burbuja iterativo: ordena correctamente con ciclos anidados.
+
+Burbuja recursivo: versión recursiva del burbuja que ordena correctamente.
+
+2. Medición de tiempos  
+Debe usarse System.nanoTime(), promediar 5 ejecuciones y no incluir inicialización dentro de la medición.
+
+3. Excel y gráficas  
+Se requiere un archivo con 4 hojas, 4 gráficas con líneas de tendencia, ejes etiquetados y una tabla de conclusiones Big-O.
+En: Tiempos Rendimiento.xlsx
+
+5. PDF de documentación  
+Documento claro con todas las secciones, gráficas incluidas y análisis propio justificado.
+En: Entregable.pdf
+
+6. Video de demostración  
+Video en YouTube de 5–10 minutos que cubra todos los puntos solicitados.
+No lo hice
+
+8. Repositorio GitHub  
+Repositorio público, con nombre correcto, estructura organizada, README con enlace al video y mínimo 3 commits.
+Tiene +23 Commits
 
 ## Requisitos
 
@@ -273,4 +311,4 @@ mkdir -p resultados
 
 ## Ejecución
 
-Para ejecutar el codigo basta con ingresar a cualquiera de las clases (Fibonacci.java, Factorial.java, Burbuja.java, Busqueda Lineal.java) iniciarlo o correrlo, con lo cual se nos mostraran todos los tiempos y sus promedios
+Para ejecutar el codigo basta con ingresar a cualquiera de las clases (Fibonacci.java, Factorial.java, Burbuja.java, Busqueda Lineal.java) iniciarlo o correrlo(Run), con lo cual se nos mostraran todos los tiempos y sus promedios

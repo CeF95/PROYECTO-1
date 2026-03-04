@@ -1,6 +1,8 @@
 package benchmark;
 
 import algorithms.Fibonacci;
+import algorithms.Factorial;
+
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -77,6 +79,27 @@ public class Main {
             Medidor.imprimirFila("Fibonacci", "Recursivo", n, tiempoMs);
             csv.append(String.format("Fibonacci,Recursivo,%d,%d,%.6f%n", n, resultado, tiempoMs));
         }
+
+                // ---- FACTORIAL ITERATIVO ----
+        System.out.println("\n  FACTORIAL ITERATIVO  [O(n)]");
+        Medidor.imprimirEncabezado();
+        for (int n : TAMANOS) {
+            long resultado = Factorial.iterativo(n);
+            double tiempoMs = Medidor.medir(() -> Factorial.iterativo(n));
+            Medidor.imprimirFila("Factorial", "Iterativo", n, tiempoMs);
+            csv.append(String.format("Factorial,Iterativo,%d,%d,%.6f%n", n, resultado, tiempoMs));
+        }
+
+        // ---- FACTORIAL RECURSIVO ----
+        System.out.println("\n  FACTORIAL RECURSIVO  [O(n)]");
+        Medidor.imprimirEncabezado();
+        for (int n : TAMANOS) {
+            long resultado = Factorial.recursivo(n);
+            double tiempoMs = Medidor.medir(() -> Factorial.recursivo(n));
+            Medidor.imprimirFila("Factorial", "Recursivo", n, tiempoMs);
+            csv.append(String.format("Factorial,Recursivo,%d,%d,%.6f%n", n, resultado, tiempoMs));
+        }
+
 
         // ---- ANÁLISIS DE DIFERENCIA ----
         System.out.println("\n  COMPARACIÓN ITERATIVO vs RECURSIVO");

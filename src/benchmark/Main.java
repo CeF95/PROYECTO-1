@@ -2,7 +2,9 @@ package benchmark;
 
 import algorithms.Fibonacci;
 import algorithms.Factorial;
+import algorithms.Burbuja;
 import algorithms.BusquedaLineal;
+import algorithms.Burbuja;
 
 
 import java.io.FileWriter;
@@ -36,7 +38,7 @@ public class Main {
      *   fib(30) → ~2.7 millones de llamadas
      *   fib(40) → ~2.7 mil millones de llamadas (tarda minutos)
      */
-    private static final int[] TAMANOS = {5, 10, 15, 20, 25, 30};
+    private static final int[] TAMANOS = {24, 14, 9, 20, 5, 30};
 
     /** Ruta del archivo de resultados */
     private static final String CSV_PATH = "resultados/tiempos.csv";
@@ -121,6 +123,27 @@ public class Main {
             csv.append(String.format("BusquedaLineal,Recursivo,%d,%d,%.6f%n", objetivo, resultado, tiempoMs));
         }
 
+        // ---- BURBUJA ITERATIVO ----
+        System.out.println("\n  BURBUJA ITERATIVO  [O(n^2)]");
+        Medidor.imprimirEncabezado();
+        int[] ordenadoIter = Burbuja.iterativo(TAMANOS);
+        double tiempoIter = Medidor.medir(() -> Burbuja.iterativo(TAMANOS));
+        Medidor.imprimirFila("Burbuja", "Iterativo", TAMANOS.length, tiempoIter);
+        csv.append(String.format("Burbuja,Iterativo,%d,%s,%.6f%n",
+                TAMANOS.length,
+                java.util.Arrays.toString(ordenadoIter),
+                tiempoIter));
+
+        // ---- BURBUJA RECURSIVO ----
+        System.out.println("\n  BURBUJA RECURSIVO  [O(n^2)]");
+        Medidor.imprimirEncabezado();
+        int[] ordenadoRec = Burbuja.recursivo(TAMANOS, TAMANOS.length);
+        double tiempoRec = Medidor.medir(() -> Burbuja.recursivo(TAMANOS, TAMANOS.length));
+        Medidor.imprimirFila("Burbuja", "Recursivo", TAMANOS.length, tiempoRec);
+        csv.append(String.format("Burbuja,Recursivo,%d,%s,%.6f%n",
+                TAMANOS.length,
+                java.util.Arrays.toString(ordenadoRec),
+                tiempoRec));
 
 
         // ---- ANÁLISIS DE DIFERENCIA ----

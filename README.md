@@ -1,7 +1,8 @@
 [README.md](https://github.com/user-attachments/files/25728315/README.md)
 # Proyecto Estructura de Datos — Fibonacci
 **Universidad Da Vinci de Guatemala**
-Ing. Brandon Chitay
+Celeste Fuentes Sepet
+Carné: 202500185
 
 ---
 

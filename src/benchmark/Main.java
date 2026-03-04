@@ -4,7 +4,7 @@ import algorithms.Fibonacci;
 import algorithms.Factorial;
 import algorithms.Burbuja;
 import algorithms.BusquedaLineal;
-import algorithms.Burbuja;
+
 
 
 import java.io.FileWriter;
@@ -40,7 +40,7 @@ public class Main {
      *   fib(30) → ~2.7 millones de llamadas
      *   fib(40) → ~2.7 mil millones de llamadas (tarda minutos)
      */
-    private static final int[] TAMANOS = {24, 14, 9, 20, 5, 30};
+    private static final int[] TAMANOS = {30, 15, 25, 20, 5, 10};
     
 
 
@@ -133,31 +133,28 @@ public class Main {
 
         // ---- BURBUJA ITERATIVO ----
 
-        //int[] arregloDesordenado = {10000, 100, 500, 5, 1000, 5000};
-
-        // ---- BURBUJA ITERATIVO ----
+            // ---- BURBUJA ITERATIVO ----
         System.out.println("\n  BURBUJA ITERATIVO  [O(n^2)]");
         Medidor.imprimirEncabezado();
-        int[] ordenadoIter = Burbuja.iterativo(arregloDesordenado);
-        double tiempoIter = Medidor.medir(() -> Burbuja.iterativo(arregloDesordenado));
-        Medidor.imprimirFila("Burbuja", "Iterativo", arregloDesordenado.length, tiempoIter);
-        System.out.println("Arreglo ordenado (Iterativo): " + Arrays.toString(ordenadoIter));
-        csv.append(String.format("Burbuja,Iterativo,%d,%s,%.6f%n",
-                arregloDesordenado.length,
-                Arrays.toString(ordenadoIter),
-                tiempoIter));
+        for (int objetivo : arregloDesordenado) {
+            double tiempoIter = Medidor.medir(() -> Burbuja.iterativo(arregloDesordenado));
+            Medidor.imprimirFila("Burbuja", "Iterativo", objetivo, tiempoIter);
+            csv.append(String.format("Burbuja,Iterativo,%d,%.6f%n",
+                    objetivo,
+                    tiempoIter));
+        }
 
         // ---- BURBUJA RECURSIVO ----
         System.out.println("\n  BURBUJA RECURSIVO  [O(n^2)]");
         Medidor.imprimirEncabezado();
-        int[] ordenadoRec = Burbuja.recursivo(arregloDesordenado, arregloDesordenado.length);
-        double tiempoRec = Medidor.medir(() -> Burbuja.recursivo(arregloDesordenado, arregloDesordenado.length));
-        Medidor.imprimirFila("Burbuja", "Recursivo", arregloDesordenado.length, tiempoRec);
-        System.out.println("Arreglo ordenado (Recursivo): " + Arrays.toString(ordenadoRec));
-        csv.append(String.format("Burbuja,Recursivo,%d,%s,%.6f%n",
-                arregloDesordenado.length,
-                Arrays.toString(ordenadoRec),
-                tiempoRec));
+        for (int objetivo : arregloDesordenado) {
+            double tiempoRec = Medidor.medir(() -> Burbuja.recursivo(arregloDesordenado, arregloDesordenado.length));
+            Medidor.imprimirFila("Burbuja", "Recursivo", objetivo, tiempoRec);
+            csv.append(String.format("Burbuja,Recursivo,%d,%.6f%n",
+                    objetivo,
+                    tiempoRec));
+        }
+
 
         //PROMEDIO 
         System.out.println("\n  PROMEDIO DE TIEMPOS (5 intentos)");

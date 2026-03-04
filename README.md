@@ -271,6 +271,6 @@ mkdir -p resultados
 
 ---
 
-## Tarea para el estudiante
+## Ejecución
 
-Modifica `TAMANOS` en `Main.java` para experimentar con distintos valores de n y observa como crecen los tiempos de forma lineal (iterativo) vs exponencial (recursivo).
+Para ejecutar el codigo basta con ingresar a cualquiera de las clases (Fibonacci.java, Factorial.java, Burbuja.java, Busqueda Lineal.java) y iniciarlo, se mostraran todos los tiempos y sus promedios

@@ -2,6 +2,7 @@ package benchmark;
 
 import algorithms.Fibonacci;
 import algorithms.Factorial;
+import algorithms.BusquedaLineal;
 
 
 import java.io.FileWriter;
@@ -99,6 +100,27 @@ public class Main {
             Medidor.imprimirFila("Factorial", "Recursivo", n, tiempoMs);
             csv.append(String.format("Factorial,Recursivo,%d,%d,%.6f%n", n, resultado, tiempoMs));
         }
+
+        // ---- BUSQUEDA LINEAL ITERATIVO
+        System.out.println("\n  BUSQUEDA LINEAL ITERATIVO");
+        Medidor.imprimirEncabezado();
+        for (int objetivo : TAMANOS) {
+            int resultado = BusquedaLineal.iterativo(TAMANOS, objetivo);
+            double tiempoMs = Medidor.medir(() -> BusquedaLineal.iterativo(TAMANOS, objetivo));
+            Medidor.imprimirFila("BusquedaLineal", "Iterativo", objetivo, tiempoMs);
+            csv.append(String.format("BusquedaLineal,Iterativo,%d,%d,%.6f%n", objetivo, resultado, tiempoMs));
+        }
+
+        // ---- BÚSQUEDA LINEAL RECURSIVA ----
+        System.out.println("\n  BÚSQUEDA LINEAL RECURSIVA");
+        Medidor.imprimirEncabezado();
+        for (int objetivo : TAMANOS) {
+            int resultado = BusquedaLineal.recursivo(TAMANOS, objetivo,0);
+            double tiempoMs = Medidor.medir(() -> BusquedaLineal.recursivo(TAMANOS, objetivo,0));
+            Medidor.imprimirFila("BusquedaLineal", "Recursivo", objetivo, tiempoMs);
+            csv.append(String.format("BusquedaLineal,Recursivo,%d,%d,%.6f%n", objetivo, resultado, tiempoMs));
+        }
+
 
 
         // ---- ANÁLISIS DE DIFERENCIA ----

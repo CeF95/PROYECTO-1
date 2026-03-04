@@ -273,4 +273,4 @@ mkdir -p resultados
 
 ## Ejecución
 
-Para ejecutar el codigo basta con ingresar a cualquiera de las clases (Fibonacci.java, Factorial.java, Burbuja.java, Busqueda Lineal.java) y iniciarlo, se mostraran todos los tiempos y sus promedios
+Para ejecutar el codigo basta con ingresar a cualquiera de las clases (Fibonacci.java, Factorial.java, Burbuja.java, Busqueda Lineal.java) iniciarlo o correrlo, con lo cual se nos mostraran todos los tiempos y sus promedios

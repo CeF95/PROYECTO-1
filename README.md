@@ -1,5 +1,5 @@
 [README.md](https://github.com/user-attachments/files/25728315/README.md)
-# Proyecto Estructura de Datos — Fibonacci
+# Proyecto Estructura de Datos
 **Universidad Da Vinci de Guatemala**
 Celeste Fuentes Sepet
 Carné: 202500185
